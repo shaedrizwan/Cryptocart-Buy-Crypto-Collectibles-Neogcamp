@@ -18,18 +18,22 @@ export function ProductDetails(){
 
     
     return(
-        <>
+        <div className="product">
         {!products && <div>Please wait.. Product is loading!</div>}
         {products && <div className="product-container">
-            <img src={product.image} alt={product.slug} className="product-image"/>
+            <div className="image-container">
+                <img src={product.image} alt={product.slug} className="product-image"/>
+            </div>
             <div className="product-details-wrap">
-                <div>{product.name}</div>
-                <div>{product.owner}</div>
-                <div>{product.price}</div>
-                <button onClick={()=>addToCartHandler(product)}>Add to Cart</button>
-                <button onClick={()=>addToWishList(product)}>Add to Wishlist</button>
+                <div className="name">{product.name}</div>
+                <div className="price">Price: Ξ {product.price}</div>
+                <div className="pr-owner">Owner: {product.owner}</div>
+                <div className="btn-container">
+                    <div className="btn btn-pr" onClick={()=>addToCartHandler(product)}>Add to Cart</div>
+                    <div className="btn btn-sec" onClick={()=>addToWishList(product)}>Add to Wishlist</div>
+                </div>
             </div>
         </div>}
-        </>
+        </div>
     )
 }

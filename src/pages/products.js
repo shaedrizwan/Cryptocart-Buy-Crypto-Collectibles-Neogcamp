@@ -2,6 +2,7 @@ import "../stylesheets/products.css"
 import {useReducer} from "react"
 import { useProduct } from "../ProductContext"
 import { ProductCard } from "../components";
+import BlockLoading from "react-loadingg/lib/BlockLoading";
 
 export function Products(){
 
@@ -67,7 +68,7 @@ export function Products(){
 
             </div>
             <div className="prod-grid">
-                {!sortedProducts && <div>Products are loading.. Please wait!!</div>}
+                {!sortedProducts && <BlockLoading/>}
                 {sortedProducts && sortedProducts.map(product =>{
                     return <ProductCard product={product}/>
                 })}

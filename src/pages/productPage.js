@@ -3,6 +3,7 @@ import "../stylesheets/productPage.css";
 import {useCart} from "../CartContext";
 import {useWishlist} from "../WishlistContext";
 import { useProduct } from "../ProductContext";
+import BlockLoading from "react-loadingg/lib/BlockLoading";
 
 
 export function ProductDetails(){
@@ -19,7 +20,7 @@ export function ProductDetails(){
     
     return(
         <div className="product">
-        {!products && <div>Please wait.. Product is loading!</div>}
+        {!products && <BlockLoading/>}
         {products && <div className="product-container">
             <div className="image-container">
                 <img src={product.image} alt={product.slug} className="product-image"/>

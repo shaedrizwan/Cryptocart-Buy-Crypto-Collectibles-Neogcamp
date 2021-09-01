@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useProduct } from "../ProductContext";
 import { CategoriesCard, HeroImage, ProductCard } from "../components";
 import "../softui.css"
+import BlockLoading from "react-loadingg/lib/BlockLoading";
 
 export function Home(){
 
@@ -18,7 +19,7 @@ export function Home(){
             </div>
             <div className="title-main">Products</div>
             <div className="product-grid">
-                {!products && <div>Products loading... please wait!</div>}
+                {!products && <BlockLoading/>}
                 {products && products.filter((item,idx)=>idx<4).map(product =>{
                     return <ProductCard product={product} />
                 })}

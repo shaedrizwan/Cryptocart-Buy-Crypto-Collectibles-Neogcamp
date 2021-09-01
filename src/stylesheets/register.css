@@ -1,0 +1,21 @@
+.register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+}
+
+.register-container{
+    width: 500px;
+}
+
+.register-title{
+    font-size: 1.8rem;
+    align-self: center;
+    border-bottom: 1px solid gray;
+}
+
+.register-label{
+    font-size: 1.1rem;
+    padding-left: 1rem;
+}

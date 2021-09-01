@@ -12,6 +12,7 @@ import {toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from './AuthContext';
 import Register from "./pages/register";
+import Category from './pages/category';
 
 toast.configure()
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/products" element={<Products/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/category/:category" element={<Category/>}/>
         </Routes>
       </div>
     </div>

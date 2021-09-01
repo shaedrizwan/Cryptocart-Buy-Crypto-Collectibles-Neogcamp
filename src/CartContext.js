@@ -45,21 +45,24 @@ export function CartProvider({children}){
     const {token} = useAuth();
 
     useEffect(()=>{
-        if(token){
-            (async function(){
-                const response = await axios.get('https://cryptocart-backend.herokuapp.com/cart',{
-                    headers:{
-                        Authorization:token
-                    }
-                })
-                if(response.status === 200){
-                    cartDispatch({type:"UPDATE",payload:response.data.cart})
+        (async function(){
+            const response = await axios.get('https://cryptocart-backend.herokuapp.com/cart',{
+                headers:{
+                    Authorization:token
                 }
-            })()
-        }
+            })
+            if(response.status === 200){
+                cartDispatch({type:"UPDATE",payload:response.data.cart})
+            }
+        })()
     },[token])
 
     const addToCartHandler = async (product) =>{
+        cartDispatch({type:"ATC",payload:product})
+        toast.success("Cart updated successfully",{
+            position: toast.POSITION.BOTTOM_RIGHT,
+            autoClose:3000
+        })
         const response = await axios.post('https://cryptocart-backend.herokuapp.com/cart/add',{
                     productId:product._id
                 },{
@@ -67,15 +70,7 @@ export function CartProvider({children}){
                         Authorization:token
                     }
             })
-        if(response.status === 200){
-            cartDispatch({type:"ATC",payload:product})
-            toast.success("Cart updated successfully",{
-                position: toast.POSITION.BOTTOM_RIGHT,
-                autoClose:3000
-            })
-        }
-        
-        else{
+        if(response.status !== 200){
             toast.error("Oops! failed to update the cart!",{
                 position:toast.POSITION.BOTTOM_RIGHT,
                 autoClose:3000

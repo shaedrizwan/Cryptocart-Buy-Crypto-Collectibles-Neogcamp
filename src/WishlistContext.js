@@ -15,22 +15,33 @@ export function WishlistProvider({children}){
     const {token} = useAuth()
     
     useEffect(()=>{
-        (async function(){
-            const response = await axios.get('https://cryptocart-backend.herokuapp.com/wishlist',{
-                headers:{
-                    Authorization:token
+        if(token){
+            (async function(){
+                const response = await axios.get('https://cryptocart-backend.herokuapp.com/wishlist',{
+                    headers:{
+                        Authorization:token
+                    }
+                })
+                if(response.status === 200){
+                    wishlistDispatch({type:"UPDATE",payload:response.data.wishlist})
                 }
-            })
-            if(response.status === 200){
-                wishlistDispatch({type:"UPDATE",payload:response.data.wishlist})
-            }
-        })()
+            })()
+        }
     },[token])
 
     const wishlistHandler = (state,{type,payload}) =>{
         switch(type){
             case "UPDATE": return [...payload]
-            case "ATW": return [...state,payload]
+            case "ATW": {
+                console.log(state,payload)
+                const isPresent = state.find(product => product._id === payload._id)
+                console.log(isPresent)
+                if(!isPresent){
+                    return [...state,payload]
+                }else{
+                    return state
+                }
+            }
             case "RFW": return(
                 state.filter(product => product !== payload)
             )
@@ -41,19 +52,23 @@ export function WishlistProvider({children}){
     }
 
     const addToWishList = async(product) =>{
-        wishlistDispatch({type:"ATW",payload:product})
-            toast.success("Successfully added to Wishlist",{
-                position:toast.POSITION.BOTTOM_RIGHT,
-                autoClose: 3000
-            })
-        const response = await axios.post('https://cryptocart-backend.herokuapp.com/wishlist/add',{
+        try{
+            const response = await axios.post('https://cryptocart-backend.herokuapp.com/wishlist/add',{
                     productId:product._id
                 },{
                     headers:{
                         Authorization:token
                     }
             })
-        if(response.status !== 200){
+            if(response.status === 200){
+                wishlistDispatch({type:"ATW",payload:product})
+                toast.success("Successfully added to Wishlist",{
+                    position:toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 3000
+                })
+            }
+        }
+        catch(err){
             toast.error("Failed adding to Wishlist",{
                 position:toast.POSITION.BOTTOM_RIGHT,
                 autoClose: 3000

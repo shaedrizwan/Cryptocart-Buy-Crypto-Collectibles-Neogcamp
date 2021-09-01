@@ -13,9 +13,9 @@ export function Home(){
             <HeroImage image="../assets/meebits.jpg" />
             <div className="title-main">Categories</div>
             <div className="categories-container">
-                <CategoriesCard title="Art" image="../assets/category-art.png" />
-                <CategoriesCard title="Cards" image="../assets/category-card.png" />
-                <CategoriesCard title="Sports" image="../assets/category-sports.png" />
+                <CategoriesCard title="Art" category="art" image="../assets/category-art.png" />
+                <CategoriesCard title="Cards" category="cards" image="../assets/category-card.png" />
+                <CategoriesCard title="Sports" category="sports" image="../assets/category-sports.png" />
             </div>
             <div className="title-main">Products</div>
             <div className="product-grid">

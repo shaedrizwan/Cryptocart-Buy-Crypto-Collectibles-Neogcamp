@@ -1,0 +1,18 @@
+
+.hero-image{
+    margin: 1rem;
+    max-width: 80vw;
+    max-height: 80vh;
+    border-radius: 2rem;
+    box-shadow:  11px 11px 22px #9fa4ad,
+                 -7px -7px 22px #ffffff;
+}
+
+@media(max-width:800px){
+    .hero-image{
+        margin: 2rem 0rem;
+        max-width: 100%;
+        width: 100vw;
+        height: 20vh;
+    }
+}

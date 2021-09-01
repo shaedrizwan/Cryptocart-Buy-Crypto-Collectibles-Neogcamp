@@ -1,0 +1,24 @@
+.checkout-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.checkout-price{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.checkout-description{
+    color: gray;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.checkout-button{
+    max-width: 100px;
+}

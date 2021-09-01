@@ -1,0 +1,38 @@
+.linkTo{
+    text-decoration: none;
+    color: black;
+}
+
+.product-wrap{
+    margin: 1rem;
+    padding: 2rem;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-radius: 20px;
+    box-shadow:  11px 11px 22px #9fa4ad,
+                 -7px -7px 22px #ffffff;
+}
+
+.product-thumb{
+    width: 200px;
+    height: 250px;
+    border-radius: 1rem;
+    align-self: center;
+}
+
+.product-name{
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+.product-price{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.product-owner{
+    font-size: 0.9rem;
+    color: gray;
+}

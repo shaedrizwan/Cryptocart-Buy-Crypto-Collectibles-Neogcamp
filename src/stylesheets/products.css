@@ -2,11 +2,12 @@
 .products-main{
     display: flex;
     flex-flow: row wrap;
+    justify-content: flex-start;
 }
 
 .filter-container{
     background-color: #ececee;
-    width: 250px;
+    width: 200px;
     height: 30vh;
     position: fixed;
     border-radius: 1rem;
@@ -15,16 +16,17 @@
 
 .prod-grid{
     display: flex;
-    flex-flow: row wrap;
-    margin-left: 320px;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-left: 250px;
+    margin-right: auto;
+    justify-content: flex-start;
+    padding: 1rem;
 }
 
 .linkTo{
     text-decoration: none;
     color: black;
     display: flex;
-    flex-grow: 1;
     justify-content: center;
 }
 
@@ -66,5 +68,9 @@ label{
         flex-flow: row wrap;
         margin-left: 0px;
         justify-content: space-evenly;
+    }
+
+    .filter-container{
+        margin-top: 1rem;
     }
 }

@@ -41,7 +41,7 @@ export function AuthProvider({children}){
 
     const loginUser = async (username,password) =>{
         try{
-            const response = await axios.post('https://cryptocart-backend.herokuapp.com/user/login',{
+            const response = await axios.post('https://cryptocart.herokuapp.com/user/login',{
                 username:username,
                 password:password
             })

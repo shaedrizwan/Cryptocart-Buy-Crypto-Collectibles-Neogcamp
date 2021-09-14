@@ -47,7 +47,7 @@ export function CartProvider({children}){
     useEffect(()=>{
         if(token){
             (async function(){
-                const response = await axios.get('https://cryptocart-backend.herokuapp.com/cart',{
+                const response = await axios.get('https://cryptocart.herokuapp.com/cart',{
                     headers:{
                         Authorization:token
                     }
@@ -61,7 +61,7 @@ export function CartProvider({children}){
 
     const addToCartHandler = async (product) =>{
         cartDispatch({type:"ATC",payload:product})
-        const response = await axios.post('https://cryptocart-backend.herokuapp.com/cart/add',{
+        const response = await axios.post('https://cryptocart.herokuapp.com/cart/add',{
                     productId:product._id
                 },{
                     headers:{
@@ -87,7 +87,7 @@ export function CartProvider({children}){
             position: toast.POSITION.BOTTOM_RIGHT,
             autoClose:3000
         })
-        const response = await axios.post('https://cryptocart-backend.herokuapp.com/cart/remove',{
+        const response = await axios.post('https://cryptocart.herokuapp.com/cart/remove',{
                     productId:product._id
                 },{
                     headers:{

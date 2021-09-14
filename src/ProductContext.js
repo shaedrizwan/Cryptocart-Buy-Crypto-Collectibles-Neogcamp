@@ -12,7 +12,7 @@ export function ProductProvider({children}){
     const [products,setProducts] = useState()
     useEffect(()=>{
         (async function(){
-            const response = await axios.get('https://cryptocart-backend.herokuapp.com/product')
+            const response = await axios.get('https://cryptocart.herokuapp.com/product')
             if(response.status === 200){
                 setProducts(response.data.products)
             }

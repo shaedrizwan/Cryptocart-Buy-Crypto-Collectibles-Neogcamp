@@ -17,7 +17,7 @@ export function WishlistProvider({children}){
     useEffect(()=>{
         if(token){
             (async function(){
-                const response = await axios.get('https://cryptocart-backend.herokuapp.com/wishlist',{
+                const response = await axios.get('https://cryptocart.herokuapp.com/wishlist',{
                     headers:{
                         Authorization:token
                     }
@@ -53,7 +53,7 @@ export function WishlistProvider({children}){
 
     const addToWishList = async(product) =>{
         try{
-            const response = await axios.post('https://cryptocart-backend.herokuapp.com/wishlist/add',{
+            const response = await axios.post('https://cryptocart.herokuapp.com/wishlist/add',{
                     productId:product._id
                 },{
                     headers:{
@@ -82,7 +82,7 @@ export function WishlistProvider({children}){
             position:toast.POSITION.BOTTOM_RIGHT,
             autoClose: 3000
         })
-        const response = await axios.post('https://cryptocart-backend.herokuapp.com/wishlist/remove',{
+        const response = await axios.post('https://cryptocart.herokuapp.com/wishlist/remove',{
                     productId:product._id
                 },{
                     headers:{

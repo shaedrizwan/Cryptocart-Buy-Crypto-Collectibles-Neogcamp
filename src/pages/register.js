@@ -25,7 +25,7 @@ function Register() {
     const registerPressed = async () =>{
         try{
             setLloader(true)
-            const response = await axios.post('https://cryptocart-backend.herokuapp.com/user/signup',newUser)
+            const response = await axios.post('https://cryptocart.herokuapp.com/user/signup',newUser)
             if(response.status === 200){
                 navigate('/login')
             }

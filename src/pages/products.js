@@ -70,7 +70,7 @@ export function Products(){
             <div className="prod-grid">
                 {!sortedProducts && <BlockLoading/>}
                 {sortedProducts && sortedProducts.map(product =>{
-                    return <ProductCard product={product}/>
+                    return <ProductCard key={product._id} product={product}/>
                 })}
             </div>
         </div>

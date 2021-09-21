@@ -18,7 +18,6 @@ const cartHandler = (state,{type,payload,quantity}) => {
             if(prod === undefined)
             {
                 return state = [...state,{product:payload,quantity:1}]
-                // return state.map(product=>product.id===payload.id?{...product,quantity:1}:product)
             }
             else{
                 return state.map(item=>item.product===payload?{...item,quantity:item.quantity+1}:item)

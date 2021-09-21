@@ -1,17 +1,14 @@
 import { useAuth } from "../AuthContext"
 import {BlockLoading} from "react-loadingg"
 import "../stylesheets/login.css"
-import { useState } from "react";
 
 export function Login(){
 
-    const {login,loginUser,logoutUser} = useAuth();
-    const [loader,setLoader] = useState(false)
+    const {login,loginUser,logoutUser,loader} = useAuth();
 
     let username, password;
 
     const loginHandler = () =>{
-        setLoader(true)
         loginUser(username,password)
     }
 

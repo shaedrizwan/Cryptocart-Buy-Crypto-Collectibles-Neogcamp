@@ -20,8 +20,8 @@ export function Home(){
             <div className="title-main">Products</div>
             <div className="product-grid">
                 {!products && <BlockLoading/>}
-                {products && products.filter((item,idx)=>idx<4).map(product =>{
-                    return <ProductCard product={product} />
+                {products && products.slice(0,4).map(product =>{
+                    return <ProductCard key={product._id} product={product} />
                 })}
             </div>
             <Link to="/products" className="btn btn-pr" >View All Products</Link>

@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
+
 const authContext = createContext();
 
 export function useAuth(){
@@ -12,6 +13,7 @@ export function useAuth(){
 export function AuthProvider({children}){
     const [login,setLogin] = useState(false)
     const [token,setToken] = useState("")
+    const [loader,setLoader] = useState(false)
     const navigate = useNavigate()
     const {state} = useLocation()
 
@@ -41,6 +43,7 @@ export function AuthProvider({children}){
 
     const loginUser = async (username,password) =>{
         try{
+            setLoader(true)
             const response = await axios.post('https://cryptocart.herokuapp.com/user/login',{
                 username:username,
                 password:password
@@ -54,15 +57,17 @@ export function AuthProvider({children}){
                 localStorage?.setItem("login",JSON.stringify({isLoggedIn:true,token:response.data.token}))
                 state != null ?navigate(state.from):navigate('/')
             }
-            else if(response.status !== 200){
-                toast.error("Login failed",{
-                    position:toast.POSITION.BOTTOM_RIGHT
-                })
-            }
         }catch(error){
-            console.log("some error occured")
+            toast.error("Login failed! Invalid Username/Password",{
+                position:toast.POSITION.BOTTOM_RIGHT
+            })
+        }finally{
+            setLoader(false)
         }
     }
+
+    
+
 
 
     const logoutUser = () =>{
@@ -72,7 +77,7 @@ export function AuthProvider({children}){
     }
 
     return(
-        <authContext.Provider value={{login,loginUser,logoutUser,token}}>
+        <authContext.Provider value={{login,loginUser,logoutUser,token,loader}}>
             {children}
         </authContext.Provider>
     )

@@ -1,17 +1,17 @@
 import "../stylesheets/cart.css"
 import {useCart} from "../CartContext";
-import { Checkout } from "../components";
+import { CheckoutComponent } from "../components";
 
 
 export function Cart(){
-    const {cartState,addToCartHandler,removeFromCartHandler} = useCart();
+    const {cartState,addToCartHandler,removeFromCartHandler,setPrice} = useCart();
 
     let {price} = cartState.reduce(function(previousValue, currentValue) {
         return {
           price: previousValue.price + currentValue.product.price*currentValue.quantity
         }
-      },{price:0});
-
+    },{price:0});
+    setPrice(price)
     
     return(
         <div className="cart-main">
@@ -30,7 +30,7 @@ export function Cart(){
                 )})}
             </div>
             <div className={cartState.length===0?"cart-checkout-hide":"cart-checkout"}>
-                <Checkout price={price}/>
+                <CheckoutComponent price={price}/>
             </div>
         </div>
     )

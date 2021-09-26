@@ -1,4 +1,4 @@
-import {createContext,useEffect,useContext,useReducer} from "react";
+import {createContext,useEffect,useContext,useReducer, useState} from "react";
 import { useAuth } from "./AuthContext";
 import axios from 'axios';
 import {toast} from "react-toastify";
@@ -41,6 +41,7 @@ const cartHandler = (state,{type,payload,quantity}) => {
 
 export function CartProvider({children}){
     const [cartState,cartDispatch] = useReducer(cartHandler,[]);
+    const [price,setPrice] = useState(null)
     const {token} = useAuth();
 
     useEffect(()=>{
@@ -103,7 +104,7 @@ export function CartProvider({children}){
     }
 
     return(
-        <CartContext.Provider value={{cartState,addToCartHandler,removeFromCartHandler}}>
+        <CartContext.Provider value={{cartState,price,setPrice,addToCartHandler,removeFromCartHandler}}>
             {children}
         </CartContext.Provider>
     )

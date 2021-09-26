@@ -1,0 +1,43 @@
+.checkout{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 3rem;
+}
+
+.chkt-label{
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+}
+
+.chkt-description{
+    margin-left: 1.5rem;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.chkt-title{
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 1rem 0rem;
+}
+
+.hide-radio{
+    display: none;
+}
+
+.address-item{
+    margin: 1.5rem;
+}
+
+.radio-label{
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+input[type=radio]:checked + .radio-label{
+    border: 3px solid black;
+}

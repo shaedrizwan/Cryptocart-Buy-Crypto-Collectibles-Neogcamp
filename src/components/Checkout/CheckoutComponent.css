@@ -21,4 +21,6 @@
 
 .checkout-button{
     max-width: 100px;
+    text-decoration: none;
+    color: black;
 }

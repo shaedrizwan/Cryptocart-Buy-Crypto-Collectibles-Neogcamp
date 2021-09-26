@@ -12,6 +12,9 @@ import { useAuth } from './AuthContext';
 import Register from "./pages/register";
 import Category from './pages/category';
 import { Header } from './components';
+import Checkout from './pages/checkout';
+import SuccessOrder from './pages/success';
+import FailedOrder from './pages/failed';
 
 toast.configure()
 
@@ -36,6 +39,9 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/category/:category" element={<Category/>}/>
+          <PrivateRoute login={login} path="/checkout" element={<Checkout/>}/>
+          <PrivateRoute login={login} path="/successorder" element={<SuccessOrder/>}/>
+          <PrivateRoute login={login} path="/failedorder" element={<FailedOrder/>}/>
         </Routes>
       </div>
     </div>

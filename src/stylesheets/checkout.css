@@ -1,8 +1,14 @@
 .checkout{
     display: flex;
-    flex-direction: column;
-    width: 50%;
     margin-left: 3rem;
+    height: 100%;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    flex: 0.6;
+    width: 60%;
 }
 
 .chkt-label{
@@ -39,5 +45,11 @@
 }
 
 input[type=radio]:checked + .radio-label{
-    border: 3px solid black;
+    border: 5px solid green;
+}
+
+.payment-container{
+    position: sticky;
+    top: 0;
+    margin-left: 2rem;
 }

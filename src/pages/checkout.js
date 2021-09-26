@@ -54,33 +54,34 @@ function Checkout() {
 
     return (
         <div className="checkout">
+            <div className="main-container">
+                <div className="address-container">
+                    <div className="chkt-title">Select Address</div>
+                    {address && address.map(address => <div className="address-item" key={address}>
+                    <input type="radio" className="hide-radio" id={address} name="address" value={address}/>
+                    <label for={address} className="radio-label">{address}</label>
+                    </div>)}
+                </div>
+
+                <div className="payment-container">
+                    <div className="chkt-title">Payment Details</div>
+                    <div className="chkt-label">Enter your name</div>
+                    <input type="text" className="form-input" onChange={changeHandler} name="name" value={paymentDetails.name}/>
+                    <div className="chkt-label">Enter your Card Number</div>
+                    <input type="text" className="form-input" onChange={changeHandler} name="cardNumber" value={paymentDetails.cardNumber}/>
+                    <div className="chkt-label">Enter Expiry Date</div>
+                    <input type="text" className="form-input" onChange={changeHandler} name="expiryDate" value={paymentDetails.expiryDate}/>
+                    <div className="chkt-label">Enter CVV</div>
+                    <div className="chkt-description">(Enter 123 for successful transaction or 111 for failed transaction)</div>
+                    <input type="text" className="form-input" onChange={changeHandler} name="CVV" value={paymentDetails.CVV}/>
+                    <button className="btn btn-scs" onClick={PlaceOrderPressed}>Place Order</button>
+                </div>
+            </div>
             <div className="payment-container">
                 <div className="chkt-title">Payment Summary</div>
                 <div>Price: <span className="checkout-price">Ξ {price.toFixed(2)}</span></div>
                 <div>Gas Fee: <span className="checkout-price">Ξ {(price*0.1).toFixed(2)}</span> (10% of the price) </div>
                 <div>Total Price: <span className="checkout-price">Ξ {(price + price*0.1).toFixed(2)}</span></div>
-            </div>
-            
-            <div className="address-container">
-                <div className="chkt-title">Select Address</div>
-                {address && address.map(address => <div className="address-item" key={address}>
-                <input type="radio" className="hide-radio" id={address} name="address" value={address}/>
-                <label for={address} className="radio-label">{address}</label>
-                </div>)}
-            </div>
-
-            <div className="payment-container">
-                <div className="chkt-title">Payment Details</div>
-                <div className="chkt-label">Enter your name</div>
-                <input type="text" className="form-input" onChange={changeHandler} name="name" value={paymentDetails.name}/>
-                <div className="chkt-label">Enter your Card Number</div>
-                <input type="text" className="form-input" onChange={changeHandler} name="cardNumber" value={paymentDetails.cardNumber}/>
-                <div className="chkt-label">Enter Expiry Date</div>
-                <input type="text" className="form-input" onChange={changeHandler} name="expiryDate" value={paymentDetails.expiryDate}/>
-                <div className="chkt-label">Enter CVV</div>
-                <div className="chkt-description">(Enter 123 for successful transaction or 111 for failed transaction)</div>
-                <input type="text" className="form-input" onChange={changeHandler} name="CVV" value={paymentDetails.CVV}/>
-                <button className="btn btn-scs" onClick={PlaceOrderPressed}>Place Order</button>
             </div>
         </div>
         

@@ -1,0 +1,17 @@
+.success-order{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.success-icon{
+    max-width: 200px;
+    height: fit-content;
+}
+
+.details-container{
+    font-size: 1.5rem;
+    font-weight: bold;
+}

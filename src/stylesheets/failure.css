@@ -1,0 +1,18 @@
+.failed-order{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.failed-icon{
+    max-width: 200px;
+    height: fit-content;
+}
+
+.failed-details-container{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: red;
+}

@@ -12,6 +12,7 @@ function Checkout() {
     const [address,setAddress] = useState(null)
     const {token} = useAuth()
     const navigate = useNavigate()
+    const {cartDispatch} = useCart()
     const [paymentDetails,setPaymentDetails] = useState({
         cardNumber:949494949494,
         expiryDate:"05/22",
@@ -38,9 +39,17 @@ function Checkout() {
         setPaymentDetails({...paymentDetails,[e.target.name]:e.target.value})
     }
 
-    const PlaceOrderPressed = () =>{
+    const PlaceOrderPressed = async() =>{
         if(paymentDetails.CVV === "123"){
-            navigate('/successorder')
+            const response = await axios.post('https://cryptocart.herokuapp.com/cart/emptyCart',{},{
+                    headers:{
+                        Authorization:token
+                    }
+            })
+            if(response.status === 200){
+                cartDispatch({type:"emptyCart"})
+                navigate('/successorder')
+            }
         }
         else if(paymentDetails.CVV === "111"){
             navigate('/failedorder')

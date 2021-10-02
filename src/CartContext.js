@@ -31,6 +31,7 @@ const cartHandler = (state,{type,payload,quantity}) => {
                 return state.map(item=>item.product === payload?{...item,quantity:item.quantity-1}:item)
             }
         }
+        case "emptyCart":{ return state = [] }
         default: console.log("Error in displatch")
     }
 
@@ -104,7 +105,7 @@ export function CartProvider({children}){
     }
 
     return(
-        <CartContext.Provider value={{cartState,price,setPrice,addToCartHandler,removeFromCartHandler}}>
+        <CartContext.Provider value={{cartState,cartDispatch,price,setPrice,addToCartHandler,removeFromCartHandler}}>
             {children}
         </CartContext.Provider>
     )

@@ -45,6 +45,7 @@ export function WishlistProvider({children}){
             case "RFW": return(
                 state.filter(product => product !== payload)
             )
+            case "EMPTY": { return state = [] }
             default: console.log("Error in displatch")
         }
     

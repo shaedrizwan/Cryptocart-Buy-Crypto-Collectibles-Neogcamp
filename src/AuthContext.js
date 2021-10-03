@@ -66,13 +66,11 @@ export function AuthProvider({children}){
         }
     }
 
-    
-
-
 
     const logoutUser = () =>{
         setLogin(false)
         setToken("")
+
         localStorage?.removeItem("login")
     }
 

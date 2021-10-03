@@ -10,7 +10,6 @@ export function useCart(){
 }
 
 const cartHandler = (state,{type,payload,quantity}) => {
-
     switch(type){
         case "UPDATE": return [...payload]
         case "ATC": {
@@ -101,7 +100,6 @@ export function CartProvider({children}){
                 autoClose:3000
             })
         }
-
     }
 
     return(

@@ -34,6 +34,7 @@ header {
 
 .item-notif{
   padding: 0px 5px 2px 5px;
+  /* padding: 5px; */
   border-radius: 50%;
   font-size: small;
   position: relative;

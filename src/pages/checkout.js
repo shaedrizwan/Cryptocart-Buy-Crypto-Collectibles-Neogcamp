@@ -43,12 +43,21 @@ function Checkout() {
 
     const addAddressPressed = async() =>{
         setAddress([...address,newAddress])
-        setAddAddressPopup(false)
-        newAddress = ""
-        toast.success("New Address successfully added",{
-            autoClose: 3000,
-            position: toast.POSITION.BOTTOM_RIGHT
+        const response = await axios.post('https://cryptocart.herokuapp.com/user/address',{
+            newAddress
+        },{
+            headers:{
+                authorization:token
+            }
         })
+        if(response.status === 200){
+            setAddAddressPopup(false)
+            newAddress = ""
+            toast.success("New Address successfully added",{
+                autoClose: 3000,
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+        }
     }
 
     const PlaceOrderPressed = async() =>{

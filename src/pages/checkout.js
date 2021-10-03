@@ -10,6 +10,7 @@ import "../stylesheets/checkout.css"
 function Checkout() {
     const {price} = useCart()
     const [address,setAddress] = useState(null)
+    const [addAddressPopup,setAddAddressPopup] = useState(false)
     const {token} = useAuth()
     const navigate = useNavigate()
     const {cartDispatch} = useCart()
@@ -17,8 +18,9 @@ function Checkout() {
         cardNumber:949494949494,
         expiryDate:"05/22",
         CVV:null,
-        name:"Demo"
+        name:"Demo Name"
     })
+    let newAddress;
 
     useEffect(()=>{
         (
@@ -37,6 +39,16 @@ function Checkout() {
 
     const changeHandler = e =>{
         setPaymentDetails({...paymentDetails,[e.target.name]:e.target.value})
+    }
+
+    const addAddressPressed = async() =>{
+        setAddress([...address,newAddress])
+        setAddAddressPopup(false)
+        newAddress = ""
+        toast.success("New Address successfully added",{
+            autoClose: 3000,
+            position: toast.POSITION.BOTTOM_RIGHT
+        })
     }
 
     const PlaceOrderPressed = async() =>{
@@ -65,11 +77,16 @@ function Checkout() {
         <div className="checkout">
             <div className="main-container">
                 <div className="address-container">
-                    <div className="chkt-title">Select Address</div>
+                    <div className="address-title">Select Address</div>
                     {address && address.map(address => <div className="address-item" key={address}>
                     <input type="radio" className="hide-radio" id={address} name="address" value={address}/>
                     <label for={address} className="radio-label">{address}</label>
                     </div>)}
+                    <div className="add-address-title" onClick={()=>setAddAddressPopup(toggle => !toggle)}>Want to add new Address? Click here</div>
+                    { addAddressPopup && <div className="add-address-container">
+                        <input className="add-address-input" onChange={e => newAddress=e.target.value} placeholder="Enter ETH Wallet Address"/>
+                        <button className="add-address-submit" onClick={addAddressPressed}>Add Address</button>
+                    </div>}
                 </div>
 
                 <div className="payment-container">
@@ -86,7 +103,7 @@ function Checkout() {
                     <button className="btn btn-scs" onClick={PlaceOrderPressed}>Place Order</button>
                 </div>
             </div>
-            <div className="payment-container">
+            <div className="payment-summary-container">
                 <div className="chkt-title">Payment Summary</div>
                 <div>Price: <span className="checkout-price">Ξ {price.toFixed(2)}</span></div>
                 <div>Gas Fee: <span className="checkout-price">Ξ {(price*0.1).toFixed(2)}</span> (10% of the price) </div>

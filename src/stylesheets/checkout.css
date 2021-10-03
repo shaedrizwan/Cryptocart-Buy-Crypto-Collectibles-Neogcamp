@@ -29,19 +29,61 @@
     margin: 1rem 0rem;
 }
 
+.address-title{
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 1rem 1rem;
+}
+
 .hide-radio{
     display: none;
 }
 
 .address-item{
     margin: 1.5rem;
+    display: flex;
+}
+
+.add-address-title{
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.add-address-input{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    border: 1px solid gray;
+}
+
+.add-address-submit{
+    padding: 10px;
+    width: 150px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin-left: 10px;
+}
+
+.add-address-title:hover{
+    text-decoration: underline;
+}
+
+.add-address-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-address{
+    padding: 0rem 0.5rem;
+    cursor: pointer;
 }
 
 .radio-label{
     padding: 1rem;
     border-radius: 10px;
-    border: 1px solid black;
     cursor: pointer;
+    border: 1px solid gray;
 }
 
 input[type=radio]:checked + .radio-label{
@@ -49,7 +91,15 @@ input[type=radio]:checked + .radio-label{
 }
 
 .payment-container{
-    position: sticky;
-    top: 0;
-    margin-left: 2rem;
+    background-color: #ececee;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.payment-summary-container{
+    background-color: #f7f7f7;
+    height: 12rem;
+    padding: 1rem;
+    border-radius: 10px;
 }

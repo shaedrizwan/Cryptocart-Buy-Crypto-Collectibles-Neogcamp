@@ -12,6 +12,10 @@ export function Login(){
         loginUser(username,password)
     }
 
+    const loginWithDemo = () =>{
+        loginUser(username="Demo",password="Demo")
+    }
+
     return(
         <div className="login">
             <div className="card card-pr login-container">
@@ -26,6 +30,7 @@ export function Login(){
                 }
                 {login && <div className="login-label">You're already logged in! Log out?</div>}
                 <button className="btn btn-sec" onClick={login?logoutUser:loginHandler}>{login?"Log Out":"Login"}</button>
+                {!login && <button className="btn btn-sec" onClick={loginWithDemo}>Login with Demo credentials</button>}
                 {loader && <BlockLoading/>}
             </div>
         </div>

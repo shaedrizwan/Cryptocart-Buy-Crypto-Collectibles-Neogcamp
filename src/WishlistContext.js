@@ -33,9 +33,7 @@ export function WishlistProvider({children}){
         switch(type){
             case "UPDATE": return [...payload]
             case "ATW": {
-                console.log(state,payload)
                 const isPresent = state.find(product => product._id === payload._id)
-                console.log(isPresent)
                 if(!isPresent){
                     return [...state,payload]
                 }else{
@@ -53,7 +51,11 @@ export function WishlistProvider({children}){
     }
 
     const addToWishList = async(product) =>{
-        try{
+            wishlistDispatch({type:"ATW",payload:product})
+            toast.success("Successfully added to Wishlist",{
+                position:toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 3000
+            })
             const response = await axios.post('https://cryptocart.herokuapp.com/wishlist/add',{
                     productId:product._id
                 },{
@@ -61,20 +63,12 @@ export function WishlistProvider({children}){
                         Authorization:token
                     }
             })
-            if(response.status === 200){
-                wishlistDispatch({type:"ATW",payload:product})
-                toast.success("Successfully added to Wishlist",{
+            if(response.status !== 200){
+                toast.error("Failed adding to Wishlist",{
                     position:toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 3000
                 })
             }
-        }
-        catch(err){
-            toast.error("Failed adding to Wishlist",{
-                position:toast.POSITION.BOTTOM_RIGHT,
-                autoClose: 3000
-            })
-        }
     }
 
     const removeFromWishList = async(product) =>{

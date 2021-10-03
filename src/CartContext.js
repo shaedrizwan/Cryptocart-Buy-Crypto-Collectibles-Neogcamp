@@ -16,17 +16,33 @@ const cartHandler = (state,{type,payload,quantity}) => {
             const prod = state.find(item=>item.product === payload)
             if(prod === undefined)
             {
+                toast.success("Product added to cart successfully",{
+                    position:toast.POSITION.BOTTOM_RIGHT,
+                    autoClose:3000
+                })
                 return state = [...state,{product:payload,quantity:1}]
             }
             else{
+                toast.success("Product quantity increased successfully",{
+                    position:toast.POSITION.BOTTOM_RIGHT,
+                    autoClose:3000
+                })
                 return state.map(item=>item.product===payload?{...item,quantity:item.quantity+1}:item)
             }
         }
         case "RFC":{
             if(quantity === 1){
+                toast.success("Product removed from cart successfully",{
+                    position:toast.POSITION.BOTTOM_RIGHT,
+                    autoClose:3000
+                })
                 return state.filter(item => item.product !== payload)
             }
             else{
+                toast.success("Product quantity decreased successfully",{
+                    position:toast.POSITION.BOTTOM_RIGHT,
+                    autoClose:3000
+                })
                 return state.map(item=>item.product === payload?{...item,quantity:item.quantity-1}:item)
             }
         }
@@ -68,12 +84,7 @@ export function CartProvider({children}){
                         Authorization:token
                     }
             })
-        if(response.status === 200){
-            toast.success("Product added to cart successfully",{
-                position:toast.POSITION.BOTTOM_RIGHT,
-                autoClose:3000
-            })
-        }else{
+        if(response.status !== 200){
             toast.error("Oops! failed to update the cart!",{
                 position:toast.POSITION.BOTTOM_RIGHT,
                 autoClose:3000
@@ -83,10 +94,6 @@ export function CartProvider({children}){
 
     const removeFromCartHandler = async(product,quantity) => {
         cartDispatch({type:"RFC",payload:product,quantity})
-        toast.success("Cart updated successfully",{
-            position: toast.POSITION.BOTTOM_RIGHT,
-            autoClose:3000
-        })
         const response = await axios.post('https://cryptocart.herokuapp.com/cart/remove',{
                     productId:product._id
                 },{

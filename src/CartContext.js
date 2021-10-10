@@ -13,36 +13,20 @@ const cartHandler = (state,{type,payload,quantity}) => {
     switch(type){
         case "UPDATE": return [...payload]
         case "ATC": {
-            const prod = state.find(item=>item.product === payload)
+            const prod = state.find(item=>item.product._id === payload._id)
             if(prod === undefined)
             {
-                toast.success("Product added to cart successfully",{
-                    position:toast.POSITION.BOTTOM_RIGHT,
-                    autoClose:3000
-                })
                 return state = [...state,{product:payload,quantity:1}]
             }
             else{
-                toast.success("Product quantity increased successfully",{
-                    position:toast.POSITION.BOTTOM_RIGHT,
-                    autoClose:3000
-                })
                 return state.map(item=>item.product===payload?{...item,quantity:item.quantity+1}:item)
             }
         }
         case "RFC":{
             if(quantity === 1){
-                toast.success("Product removed from cart successfully",{
-                    position:toast.POSITION.BOTTOM_RIGHT,
-                    autoClose:3000
-                })
                 return state.filter(item => item.product !== payload)
             }
             else{
-                toast.success("Product quantity decreased successfully",{
-                    position:toast.POSITION.BOTTOM_RIGHT,
-                    autoClose:3000
-                })
                 return state.map(item=>item.product === payload?{...item,quantity:item.quantity-1}:item)
             }
         }

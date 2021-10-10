@@ -1,6 +1,7 @@
 import "../stylesheets/cart.css"
 import {useCart} from "../CartContext";
 import { CheckoutComponent } from "../components";
+import { useEffect } from "react";
 
 
 export function Cart(){
@@ -11,7 +12,11 @@ export function Cart(){
           price: previousValue.price + currentValue.product.price*currentValue.quantity
         }
     },{price:0});
-    setPrice(price)
+    
+
+    useEffect(()=>{
+        setPrice(price)
+    },[price])
     
     return(
         <div className="cart-main">

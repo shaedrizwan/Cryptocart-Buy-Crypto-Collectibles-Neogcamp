@@ -52,10 +52,6 @@ export function WishlistProvider({children}){
 
     const addToWishList = async(product) =>{
             wishlistDispatch({type:"ATW",payload:product})
-            toast.success("Successfully added to Wishlist",{
-                position:toast.POSITION.BOTTOM_RIGHT,
-                autoClose: 3000
-            })
             const response = await axios.post('https://cryptocart.herokuapp.com/wishlist/add',{
                     productId:product._id
                 },{
@@ -64,10 +60,6 @@ export function WishlistProvider({children}){
                     }
             })
             if(response.status !== 200){
-                toast.error("Failed adding to Wishlist",{
-                    position:toast.POSITION.BOTTOM_RIGHT,
-                    autoClose: 3000
-                })
             }
     }
 

@@ -9,7 +9,7 @@ import "../stylesheets/checkout.css"
 
 function Checkout() {
     const {price} = useCart()
-    const [address,setAddress] = useState(null)
+    const [address,setAddress] = useState("")
     const [addAddressPopup,setAddAddressPopup] = useState(false)
     const {token} = useAuth()
     const navigate = useNavigate()
@@ -17,7 +17,7 @@ function Checkout() {
     const [paymentDetails,setPaymentDetails] = useState({
         cardNumber:949494949494,
         expiryDate:"05/22",
-        CVV:null,
+        CVV:"",
         name:"Demo Name"
     })
     let newAddress;

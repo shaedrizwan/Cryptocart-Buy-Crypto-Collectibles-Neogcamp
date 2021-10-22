@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from './AuthContext';
 import Register from "./pages/register";
 import Category from './pages/category';
-import { Header } from './components';
+import { Header, MobileHeader } from './components';
 import Checkout from './pages/checkout';
 import SuccessOrder from './pages/success';
 import FailedOrder from './pages/failed';
@@ -29,6 +29,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <MobileHeader />
       <div className="main">
         <Routes>
           <Route path="/" element={<Home/>}/>
